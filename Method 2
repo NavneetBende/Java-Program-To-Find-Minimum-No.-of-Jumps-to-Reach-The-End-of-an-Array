@@ -1,0 +1,36 @@
+import java.util.*;
+public
+class Main {
+    public
+    static int minJumps(int[] arr) {
+        int i = 0, jump = 0, n = arr.length;
+        while (i < n - 1) {
+            int val = arr[i];
+            if (val == 0) {
+                return -1;
+            }
+            int max = 0, maxInd = -1;
+            if ((i + val) >= (n - 1)) {
+                return jump + 1;
+            }
+            for (int j = i + 1; j < n && j <= (i + val); j++) {
+                if ((j + arr[j]) > max) {
+                    max = j + arr[j];
+                    maxInd = j;
+                }
+            }
+            i = maxInd;
+            jump++;
+        }
+        return jump;
+    }
+    public
+    static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = 5;
+        int[] arr = {1,2,4,5,6};
+        System.out.print("Minimum number of Jumps to reach the end of an array= ");
+        int ans = minJumps(arr);
+        System.out.println(ans);
+    }
+}
